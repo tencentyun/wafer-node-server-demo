@@ -1,0 +1,11 @@
+{
+    "name": "weapp",
+    "script": "app.js",
+    "cwd": "./",
+    "exec_mode": "fork",
+    "watch": true,
+    "env": {
+        "NODE_ENV": "production",
+        "DEBUG_SDK": "1",
+    }
+}
