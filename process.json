@@ -6,6 +6,6 @@
     "watch": true,
     "env": {
         "NODE_ENV": "production",
-        "DEBUG_SDK": "1",
+        "DEBUG_SDK": "1"
     }
 }
