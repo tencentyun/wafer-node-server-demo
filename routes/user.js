@@ -14,8 +14,5 @@ module.exports = (req, res) => {
                     'userInfo': data.userInfo,
                 },
             });
-        })
-        .catch(err => {
-            loginService.writeError(err);
         });
 };
