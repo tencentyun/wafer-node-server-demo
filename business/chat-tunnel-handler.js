@@ -3,7 +3,7 @@
 const TunnelService = require('qcloud-weapp-server-sdk').TunnelService;
 
 /**
- * 广播消息
+ * 调用 TunnelService.broadcast() 进行广播
  * @param  {String} type    消息类型
  * @param  {String} content 消息内容
  */
@@ -11,12 +11,25 @@ const $broadcast = (type, content) => {
     TunnelService.broadcast(connectedTunnelIds, type, content);
 };
 
+/**
+ * 调用 TunnelService.closeTunnel() 关闭信道
+ * @param  {String} tunnelId 信道ID
+ */
+const $close = (tunnelId) => {
+    TunnelService.closeTunnel(tunnelId);
+};
+
 // 保存 WebSocket 信道对应的用户
+// 在实际的业务中，应该使用数据库进行存储跟踪，这里作为示例只是演示其作用
 let userMap = {};
 
 // 保存 当前已连接的 WebSocket 信道ID列表
 let connectedTunnelIds = [];
 
+/**
+ * 实现 WebSocket 信道处理器
+ * 本示例配合客户端 Demo 实现一个简单的聊天室功能
+ */
 class ChatTunnelHandler {
     /**
      * 实现 onRequest 方法
@@ -46,7 +59,8 @@ class ChatTunnelHandler {
                 'enter': userMap[tunnelId],
             });
         } else {
-            debug(`Unknown \`tunnelId\: {$tunnelId} was coming, ignore directly`);
+            debug(`Unknown tunnelId(${tunnelId}) was connectd, close it`);
+            $close(tunnelId);
         }
     }
 
@@ -61,10 +75,14 @@ class ChatTunnelHandler {
 
         switch (type) {
         case 'speak':
-            $broadcast('speak', {
-                'who': userMap[tunnelId],
-                'word': content.word,
-            });
+            if (tunnelId in userMap) {
+                $broadcast('speak', {
+                    'who': userMap[tunnelId],
+                    'word': content.word,
+                });
+            } else {
+                $close(tunnelId);
+            }
             break;
 
         default:
