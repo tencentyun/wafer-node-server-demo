@@ -39,8 +39,10 @@ class ChatTunnelHandler {
     onRequest(tunnelId, userInfo) {
         debug('ChatTunnelHandler[onRequest] =>', { tunnelId, userInfo });
 
-        // 保存 信道ID => 用户信息 的映射
-        userMap[tunnelId] = userInfo;
+        if (typeof userInfo === 'object') {
+            // 保存 信道ID => 用户信息 的映射
+            userMap[tunnelId] = userInfo;
+        }
     }
 
     /**
