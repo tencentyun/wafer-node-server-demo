@@ -1,23 +1,13 @@
 'use strict';
 
 require('./globals');
+require('./setup-qcloud-sdk');
 
 const http = require('http');
 const express = require('express');
 const bodyParser = require('body-parser');
 const morgan = require('morgan');
 const config = require('./config');
-
-// 配置 SDK BEGIN
-const qcloud = require('qcloud-weapp-server-sdk');
-
-qcloud.config({
-    SecretKey: 'eeb93ecd-ecb3-4c58-a347-8ce3617b8e8c',
-    ServerHost: 'www.qcloua.la',
-    AuthServerHost: 'http://mina.auth.com:7575',
-    TunnelServerHost: 'https://ws.qcloud.com',
-});
-// 配置 SDK END
 
 const app = express();
 
