@@ -24,10 +24,7 @@ class ChatTunnelHandler {
      * 会调用 onRequest 方法，此时可以把信道 ID 和用户信息关联起来
      */
     onRequest(tunnelId, userInfo) {
-        debug('ChatTunnelHandler[onRequest] =>', {
-            'tunnelId': tunnelId,
-            'userInfo': userInfo,
-        });
+        debug('ChatTunnelHandler[onRequest] =>', { tunnelId, userInfo });
 
         // 保存 信道ID => 用户信息 的映射
         userMap[tunnelId] = userInfo;
@@ -39,10 +36,7 @@ class ChatTunnelHandler {
      * 此时通知所有其它在线的用户当前总人数以及刚加入的用户是谁
      */
     onConnect(tunnelId) {
-        debug('ChatTunnelHandler[onConnect] =>', {
-            'tunnelId': tunnelId,
-            'userInfo': userInfo,
-        });
+        debug('ChatTunnelHandler[onConnect] =>', { tunnelId });
 
         if (tunnelId in userMap) {
             connectedTunnelIds.push(tunnelId);
@@ -63,11 +57,7 @@ class ChatTunnelHandler {
      * 我们把这个发言的信息广播到所有在线的 WebSocket 信道上
      */
     onMessage(tunnelId, type, content) {
-        debug('ChatTunnelHandler[onMessage] =>', {
-            'tunnelId': tunnelId,
-            'type': type,
-            'content': content,
-        });
+        debug('ChatTunnelHandler[onMessage] =>', { tunnelId, type, content });
 
         switch (type) {
         case 'speak':
@@ -89,9 +79,7 @@ class ChatTunnelHandler {
      * 会调用该方法，此时可以进行清理及通知操作
      */
     onClose(tunnelId) {
-        debug('ChatTunnelHandler[onClose] =>', {
-            'tunnelId': tunnelId,
-        });
+        debug('ChatTunnelHandler[onClose] =>', { tunnelId });
 
         let leaveUser;
 
