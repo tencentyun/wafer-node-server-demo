@@ -1,0 +1,1 @@
+global.debug = console.log.bind(console);
