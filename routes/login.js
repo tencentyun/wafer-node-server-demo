@@ -1,6 +1,6 @@
 'use strict';
 
-const LoginService = require('../services/login-service');
+const LoginService = require('qcloud-weapp-server-sdk').LoginService;
 
 module.exports = (req, res) => {
     LoginService.create(req, res).login();
