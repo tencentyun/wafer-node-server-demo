@@ -8,7 +8,24 @@ const TunnelService = require('qcloud-weapp-server-sdk').TunnelService;
  * @param  {String} content 消息内容
  */
 const $broadcast = (type, content) => {
-    TunnelService.broadcast(connectedTunnelIds, type, content);
+    TunnelService.broadcast(connectedTunnelIds, type, content)
+        .then(result => {
+            let invalidTunnelIds = result.data && result.data.invalidTunnelIds || [];
+
+            if (invalidTunnelIds.length) {
+                debug('检测到无效的信道 IDs =>', invalidTunnelIds);
+
+                // 从`userMap`和`connectedTunnelIds`中将无效的信道记录移除
+                invalidTunnelIds.forEach(tunnelId => {
+                    delete userMap[tunnelId];
+
+                    let index = connectedTunnelIds.indexOf(tunnelId);
+                    if (~index) {
+                        connectedTunnelIds.splice(index, 1);
+                    }
+                });
+            }
+        });
 };
 
 /**
