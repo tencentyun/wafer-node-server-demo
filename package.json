@@ -7,8 +7,8 @@
     "start": "pm2 start process.json"
   },
   "keywords": [],
-  "author": "",
-  "license": "ISC",
+  "author": "CFETeam",
+  "license": "MIT",
   "dependencies": {
     "body-parser": "^1.15.2",
     "express": "^4.14.0",
