@@ -25,9 +25,7 @@ Demo
 
 其中，`app.js` 是 启动文件，`config.js` 配置了启动服务监听的端口号，`process.json` 是运行本示例 的 `pm2` 配置文件。
 
-`setup-qcloud-sdk.js` 用于初始化 SDK 配置，配置从文件 `/etc/qcloud/sdk.config` 中读取。
-
-配置文件 `/etc/qcloud/sdk.config` 结构如下：
+`setup-qcloud-sdk.js` 用于初始化 SDK 配置，配置从文件 `/etc/qcloud/sdk.config` 中读取。 配置文件包含如下配置项：
 
 ```json
 {
@@ -58,7 +56,7 @@ Demo
 
 ## 运行示例
 
-按照[小程序创建资源配置指引](https://github.com/CFETeam/weapp-doc)进行操作，可以得到运行本示例所需的资源和服务，其中包括已部署好的示例代码。
+按照[小程序创建资源配置指引](https://github.com/CFETeam/weapp-doc)进行操作，可以得到运行本示例所需的资源和服务，其中包括已部署好的示例代码及自动下发的 SDK 配置文件 `/etc/qcloud/sdk.config`。
 
 - 示例代码部署目录：`/data/release/node-weapp-demo`
 - 运行示例的 Node 版本：`v4.6.0`
