@@ -118,14 +118,16 @@ class ChatTunnelHandler {
     onClose(tunnelId) {
         debug(`${this.constructor.name} [onClose] =>`, { tunnelId });
 
-        let leaveUser;
-
-        if (tunnelId in userMap) {
-            leaveUser = userMap[tunnelId];
-            delete userMap[tunnelId];
+        if (!(tunnelId in userMap)) {
+            debug(`${this.constructor.name} [onClose][Invalid TunnelId]=>`, tunnelId);
+            $close(tunnelId);
+            return;
         }
 
-        let index = connectedTunnelIds.indexOf(tunnelId);
+        const leaveUser = userMap[tunnelId];
+        delete userMap[tunnelId];
+
+        const index = connectedTunnelIds.indexOf(tunnelId);
         if (~index) {
             connectedTunnelIds.splice(index, 1);
         }
@@ -134,7 +136,7 @@ class ChatTunnelHandler {
         if (connectedTunnelIds.length > 0) {
             $broadcast('people', {
                 'total': connectedTunnelIds.length,
-                'leave': leaveUser || '冒失者',
+                'leave': leaveUser,
             });
         }
     }
