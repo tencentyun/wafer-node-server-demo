@@ -24,10 +24,10 @@ Demo
 ├── process.json
 ├── routes
 │   ├── index.js
+│   ├── welcome.js
 │   ├── login.js
-│   ├── tunnel.js
 │   ├── user.js
-│   └── welcome.js
+│   └── tunnel.js
 └── setup-qcloud-sdk.js
 ```
 
