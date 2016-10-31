@@ -40,4 +40,7 @@ qcloud.config({
     TunnelSignatureKey: config.tunnelSignatureKey,
 });
 
+// 网络请求超时时长（单位：毫秒）
+qcloud.config.setNetworkTimeout(config.networkTimeout);
+
 debug('[当前 SDK 使用配置] =>', config);
