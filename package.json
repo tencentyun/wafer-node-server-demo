@@ -1,7 +1,7 @@
 {
-  "name": "weapp-node-server-demo",
+  "name": "wafer-node-server-demo",
   "version": "1.0.0",
-  "description": "",
+  "description": "Wafer 服务端 Demo - Node.js",
   "main": "index.js",
   "scripts": {
     "start": "pm2 start process.json"
