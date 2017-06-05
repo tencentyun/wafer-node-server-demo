@@ -62,6 +62,12 @@ Demo
 
 `business/chat-tunnel-handler.js` 是业务处理信道请求的示例代码。
 
+## 如何在demo基础上进行开发
+进入目录 `/data/release/node-weapp-demo`，将写好的代码上传到routes目录下
+
+重启服务：  pm2 restart all
+
+
 ## 更新 SDK 版本
 
 进入目录 `/data/release/node-weapp-demo`，然后先后执行命令 `npm update`、`pm2 restart process.json` 即可。
