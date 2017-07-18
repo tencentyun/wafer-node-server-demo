@@ -10,6 +10,7 @@ module.exports = (req, res) => {
             res.json({
                 'code': 0,
                 'message': 'ok',
+                'testFlag':'test',
                 'data': {
                     'userInfo': data.userInfo,
                 },
